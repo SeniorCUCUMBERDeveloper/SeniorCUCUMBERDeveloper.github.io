@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Andrey — Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #f5f5f5;
+      --text: #111111;
+      --muted: #6b6b6b;
+      --border: #e5e5e5;
+      --accent: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+
+    .layout {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+      gap: 48px;
+      padding: 48px 32px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 48px;
+      align-self: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .name {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .intro {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 320px;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .nav a {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .nav a span {
+      color: var(--accent);
+      margin-right: 10px;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+    }
+
+    .social {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+    }
+
+    .social a {
+      color: var(--muted);
+    }
+
+    .social a:hover {
+      color: var(--accent);
+    }
+
+    .button-row {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn-outline {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--text);
+      background: transparent;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .btn-outline:hover {
+      background: var(--text);
+      color: var(--bg);
+      text-decoration: none;
+    }
+
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      padding-bottom: 40px;
+    }
+
+    section {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .section-index {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    p {
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 4px 11px;
+      font-size: 12px;
+      background: var(--bg-alt);
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      border: 1px solid var(--text);
+      background: var(--bg);
+    }
+
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .timeline-place {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .timeline-period {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 2px;
+    }
+
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .project-card {
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--bg-alt);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .project-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .project-meta {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .project-link {
+      font-size: 13px;
+      margin-top: 4px;
+      align-self: flex-start;
+    }
+
+    .contacts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 14px;
+    }
+
+    .contacts-list span {
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 24px 18px 32px;
+      }
+      .sidebar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="layout">
+    <aside class="sidebar">
+      <div>
+        <div class="name">Andrey</div>
+        <div class="title">Information Security · NRNU MEPhI</div>
+      </div>
+
+      <p class="intro">
+        Студент 3 курса НИЯУ МИФИ (Information Security). Пишу на C/C++, Java и Kotlin.
+        Интересуюсь низкоуровневой разработкой, алгоритмами, бэкендом и Android-приложениями.
+      </p>
+
+      <nav class="nav">
+        <a href="#about"><span>01</span>Обо мне</a>
+        <a href="#skills"><span>02</span>Навыки</a>
+        <a href="#education"><span>03</span>Образование</a>
+        <a href="#projects"><span>04</span>Проекты</a>
+        <a href="#contacts"><span>05</span>Контакты</a>
+      </nav>
+
+      <div class="button-row">
+        <a class="btn-outline" href="https://github.com/SeniorCUCUMBERDeveloper/SeniorCUCUMBERDeveloper/blob/main/resume.pdf" target="_blank">
+          Резюме (PDF)
+        </a>
+        <a class="btn-outline" href="https://github.com/SeniorCUCUMBERDeveloper" target="_blank">
+          GitHub
+        </a>
+      </div>
+
+      <div class="social">
+        <a href="https://t.me/ScaM3r67" target="_blank">Telegram</a>
+      </div>
+    </aside>
+
+    <div class="content">
+      <section id="about">
+        <div class="section-header">
+          <div class="section-index">01 · ВКРАТЦЕ</div>
+          <h2 class="section-title">Обо мне</h2>
+        </div>
+        <div class="about-text">
+          <p>
+            Я занимаюсь разработкой учебных и pet-проектов на C/C++, Java и Kotlin.
+            Нравится разбираться в том, как всё работает «под капотом»: память, структуры
+            данных, алгоритмы.
+          </p>
+          <p>
+            Сейчас углубляюсь в Java + Spring Boot для бэкенда и Kotlin + Android, чтобы
+            уметь делать полноценные приложения от серверной части до мобильного клиента.
+          </p>
+          <p>
+            Открыт к стажировкам и junior-позициям, где можно развиваться в backend /
+            Android и применять алгоритмическое мышление.
+          </p>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="section-header">
+          <div class="section-index">02 · СТЕК</div>
+          <h2 class="section-title">Навыки и технологии</h2>
+        </div>
+
+        <p class="muted">Основные языки:</p>
+        <div class="chips" style="margin-bottom: 12px;">
+          <span class="chip">C</span>
+          <span class="chip">C++</span>
+          <span class="chip">Java</span>
+          <span class="chip">Kotlin</span>
+          <span class="chip">Python</span>
+          <span class="chip">x86 Assembly</span>
+        </div>
+
+        <p class="muted">Бэкенд и Android:</p>
+        <div class="chips" style="margin-bottom: 12px;">
+          <span class="chip">Spring Boot</span>
+          <span class="chip">REST API</span>
+          <span class="chip">JUnit</span>
+          <span class="chip">Android SDK</span>
+          <span class="chip">Activity lifecycle</span>
+          <span class="chip">Layouts & Views</span>
+        </div>
+
+        <p class="muted">Инфраструктура и основы:</p>
+        <div class="chips">
+          <span class="chip">Linux</span>
+          <span class="chip">Git / GitHub</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">Алгоритмы и структуры данных</span>
+          <span class="chip">Информационная безопасность (основы)</span>
+        </div>
+      </section>
+
+      <section id="education">
+        <div class="section-header">
+          <div class="section-index">03 · ПУТЬ</div>
+          <h2 class="section-title">Образование</h2>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-title">НИЯУ МИФИ, Information Security</div>
+            <div class="timeline-place">Бакалавриат, 3 курс</div>
+            <div class="timeline-period">2022 — наст. время</div>
+            <p class="muted" style="margin-top: 4px;">
+              Алгоритмы и структуры данных, операционные системы, основы информационной
+              безопасности, низкоуровневое программирование.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-title">Самостоятельные pet-проекты</div>
+            <div class="timeline-place">C/C++, Java, Kotlin · GitHub</div>
+            <div class="timeline-period">2022 — наст. время</div>
+            <p class="muted" style="margin-top: 4px;">
+              Практика через небольшие учебные проекты: алгоритмы, простые REST API,
+              Android-приложения, работа с Git и GitHub.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="section-header">
+          <div class="section-index">04 · ПРОЕКТЫ</div>
+          <h2 class="section-title">Выбранные проекты</h2>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-title">StackActivityTest</div>
+            <div class="project-meta">Kotlin · Android</div>
+            <p class="project-desc">
+              Эксперименты с back stack и навигацией между экранами: жизненный цикл
+              Activity, запуск через intents, поведение кнопки Back.
+            </p>
+            <a
+              class="project-link"
+              href="https://github.com/SeniorCUCUMBERDeveloper/StackActivityTest"
+              target="_blank"
+              >Открыть на GitHub →</a
+            >
+          </article>
+
+          <article class="project-card">
+            <div class="project-title">KotlinLab2</div>
+            <div class="project-meta">Kotlin · Android</div>
+            <p class="project-desc">
+              Учебное Android-приложение: базовая работа с макетами, View и
+              пользовательским вводом, простая логика на Kotlin.
+            </p>
+            <a
+              class="project-link"
+              href="https://github.com/SeniorCUCUMBERDeveloper/KotlinLab2"
+              target="_blank"
+              >Открыть на GitHub →</a
+            >
+          </article>
+
+          <article class="project-card">
+            <div class="project-title">RESTapiPROJECT</div>
+            <div class="project-meta">Java · Spring Boot · REST</div>
+            <p class="project-desc">
+              Учебный REST-бэкенд: слои приложения, валидация входных данных, обработка
+              ошибок, базовые тесты.
+            </p>
+            <a
+              class="project-link"
+              href="https://github.com/SeniorCUCUMBERDeveloper/RESTapiPROJECT"
+              target="_blank"
+              >Открыть на GitHub →</a
+            >
+          </article>
+
+          <article class="project-card">
+            <div class="project-title">Simple_Implementation_LRUcache</div>
+            <div class="project-meta">C++ · Алгоритмы</div>
+            <p class="project-desc">
+              Реализация LRU-кэша с упором на структуры данных и оценку сложности
+              операций.
+            </p>
+            <a
+              class="project-link"
+              href="https://github.com/SeniorCUCUMBERDeveloper/Simple_Implementation_LRUcache"
+              target="_blank"
+              >Открыть на GitHub →</a
+            >
+          </article>
+        </div>
+      </section>
+
+      <section id="contacts">
+        <div class="section-header">
+          <div class="section-index">05 · СВЯЗЬ</div>
+          <h2 class="section-title">Контакты</h2>
+        </div>
+
+        <div class="contacts-list">
+          <div>
+            <span>Telegram:</span>
+            <a href="https://t.me/ScaM3r67" target="_blank">@ScaM3r67</a>
+          </div>
+          <div>
+            <span>GitHub:</span>
+            <a
+              href="https://github.com/SeniorCUCUMBERDeveloper"
+              target="_blank"
+              >github.com/SeniorCUCUMBERDeveloper</a
+            >
+          </div>
+          <div>
+            <span>Резюме (PDF):</span>
+            <a href="https://github.com/SeniorCUCUMBERDeveloper/SeniorCUCUMBERDeveloper/blob/main/resume.pdf" target="_blank">открыть</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
