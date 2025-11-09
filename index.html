@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <title>Andrey — Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="description" content="Andrey — студент НИЯУ МИФИ (Information Security). Pet-проекты на C/C++, Java, Kotlin и Android. Ищу стажировку или junior-позицию." />
+  <meta property="og:title" content="Andrey — Portfolio" />
+  <meta property="og:description" content="C/C++ · Java · Kotlin · Android · Information Security (MEPhI)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seniorcucumberdeveloper.github.io/" />
+
   <style>
     :root {
       --bg: #ffffff;
@@ -16,6 +23,10 @@
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     html, body {
@@ -37,6 +48,11 @@
       text-decoration: underline;
     }
 
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 3px;
+    }
 
     .layout {
       min-height: 100vh;
@@ -90,6 +106,7 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--muted);
+      transition: color 0.15s ease;
     }
 
     .nav a span {
@@ -110,6 +127,7 @@
 
     .social a {
       color: var(--muted);
+      transition: color 0.15s ease;
     }
 
     .social a:hover {
@@ -136,14 +154,15 @@
       align-items: center;
       gap: 6px;
       cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
     }
 
     .btn-outline:hover {
       background: var(--text);
       color: var(--bg);
       text-decoration: none;
+      transform: translateY(-1px);
     }
-
 
     .content {
       display: flex;
@@ -187,11 +206,9 @@
       color: var(--muted);
     }
 
-
     .about-text p:last-child {
       margin-bottom: 0;
     }
-
 
     .chips {
       display: flex;
@@ -208,7 +225,6 @@
       color: var(--text);
       white-space: nowrap;
     }
-
 
     .timeline {
       display: flex;
@@ -252,7 +268,6 @@
       margin-top: 2px;
     }
 
-
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -267,6 +282,12 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
     }
 
     .project-title {
@@ -312,6 +333,9 @@
       .sidebar {
         position: static;
       }
+      .name {
+        font-size: 28px;
+      }
     }
   </style>
 </head>
@@ -328,7 +352,7 @@
         Интересуюсь низкоуровневой разработкой, алгоритмами, бэкендом и Android-приложениями.
       </p>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Навигация по разделам">
         <a href="#about"><span>01</span>Обо мне</a>
         <a href="#skills"><span>02</span>Навыки</a>
         <a href="#education"><span>03</span>Образование</a>
@@ -337,16 +361,16 @@
       </nav>
 
       <div class="button-row">
-        <a class="btn-outline" href="https://github.com/SeniorCUCUMBERDeveloper/SeniorCUCUMBERDeveloper/blob/main/resume.pdf" target="_blank">
+        <a class="btn-outline" href="https://github.com/SeniorCUCUMBERDeveloper/SeniorCUCUMBERDeveloper/blob/main/resume.pdf" target="_blank" rel="noopener noreferrer">
           Резюме (PDF)
         </a>
-        <a class="btn-outline" href="https://github.com/SeniorCUCUMBERDeveloper" target="_blank">
+        <a class="btn-outline" href="https://github.com/SeniorCUCUMBERDeveloper" target="_blank" rel="noopener noreferrer">
           GitHub
         </a>
       </div>
 
       <div class="social">
-        <a href="https://t.me/ScaM3r67" target="_blank">Telegram</a>
+        <a href="https://t.me/ScaM3r67" target="_blank" rel="noopener noreferrer">Telegram</a>
       </div>
     </aside>
 
@@ -456,12 +480,13 @@
               class="project-link"
               href="https://github.com/SeniorCUCUMBERDeveloper/StackActivityTest"
               target="_blank"
+              rel="noopener noreferrer"
               >Открыть на GitHub →</a
             >
           </article>
 
           <article class="project-card">
-            <div class="project-title">KotlinLab2</div>
+            <div class="project-title">KotlinCounter</div>
             <div class="project-meta">Kotlin · Android</div>
             <p class="project-desc">
               Учебное Android-приложение: базовая работа с макетами, View и
@@ -469,8 +494,9 @@
             </p>
             <a
               class="project-link"
-              href="https://github.com/SeniorCUCUMBERDeveloper/KotlinLab2"
+              href="https://github.com/SeniorCUCUMBERDeveloper/KotlinCounter"
               target="_blank"
+              rel="noopener noreferrer"
               >Открыть на GitHub →</a
             >
           </article>
@@ -486,6 +512,7 @@
               class="project-link"
               href="https://github.com/SeniorCUCUMBERDeveloper/RESTapiPROJECT"
               target="_blank"
+              rel="noopener noreferrer"
               >Открыть на GitHub →</a
             >
           </article>
@@ -501,6 +528,7 @@
               class="project-link"
               href="https://github.com/SeniorCUCUMBERDeveloper/Simple_Implementation_LRUcache"
               target="_blank"
+              rel="noopener noreferrer"
               >Открыть на GitHub →</a
             >
           </article>
@@ -516,19 +544,20 @@
         <div class="contacts-list">
           <div>
             <span>Telegram:</span>
-            <a href="https://t.me/ScaM3r67" target="_blank">@ScaM3r67</a>
+            <a href="https://t.me/ScaM3r67" target="_blank" rel="noopener noreferrer">@ScaM3r67</a>
           </div>
           <div>
             <span>GitHub:</span>
             <a
               href="https://github.com/SeniorCUCUMBERDeveloper"
               target="_blank"
+              rel="noopener noreferrer"
               >github.com/SeniorCUCUMBERDeveloper</a
             >
           </div>
           <div>
             <span>Резюме (PDF):</span>
-            <a href="https://github.com/SeniorCUCUMBERDeveloper/SeniorCUCUMBERDeveloper/blob/main/resume.pdf" target="_blank">открыть</a>
+            <a href="https://github.com/SeniorCUCUMBERDeveloper/SeniorCUCUMBERDeveloper/blob/main/resume.pdf" target="_blank" rel="noopener noreferrer">открыть</a>
           </div>
         </div>
       </section>
